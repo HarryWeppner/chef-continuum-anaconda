@@ -3,7 +3,7 @@ def whyrun_supported?
 end
 
 def cmd_jupyter
-  "#{node.anaconda.install_root}/#{node.anaconda.version}/bin/ipython"
+  "#{node.anaconda.install_root}/#{node.anaconda.version}/bin/jupyter"
 end
 
 def is_installed?(package_name)
