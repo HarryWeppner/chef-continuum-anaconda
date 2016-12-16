@@ -68,4 +68,5 @@ default.anaconda.notebook = {
   'owner' => node.anaconda.owner,
   'group' => node.anaconda.group,
   'install_dir' => '/opt/ipython/server',
+  'files_to_source' => nil
 }

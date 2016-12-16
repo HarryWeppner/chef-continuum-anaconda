@@ -18,5 +18,7 @@ anaconda_nbservice 'notebook-server' do
 
   install_dir node.anaconda.notebook.install_dir
 
+  files_to_source = node.anaconda.notebook.files_to_source
+
   service_action [ :enable, :start ]
 end
