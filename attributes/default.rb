@@ -6,6 +6,7 @@ default.anaconda.python = 'python2'
 default.anaconda.flavor = nil
 # either 'anaconda' or 'miniconda'
 default.anaconda.install_type = 'anaconda'
+default.anaconda.env = nil
 
 default.anaconda.installer_info = {
   'anaconda' => {

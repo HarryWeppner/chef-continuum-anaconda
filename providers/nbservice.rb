@@ -3,7 +3,13 @@ def whyrun_supported?
 end
 
 def cmd_jupyter
-  "#{node.anaconda.install_root}/#{node.anaconda.version}/bin/jupyter"
+  conda_path = File.join(node.anaconda.install_root, node.anaconda.version)
+  if node.anaconda.env do
+    conda_path = File.join(conda_path, 'envs', node.anaconda.env)
+  end
+
+  conda_path = File.join(conda_path, 'bin', 'jupyter')
+  return conda_path
 end
 
 def is_installed?(package_name)
@@ -40,13 +46,13 @@ action :create do
     recursive true
   end
 
-  pythonpath = r.pythonpath || [ ]
+  pythonpath = r.pythonpath || nil
   pythonstartup = r.pythonstartup || nil
   files_to_source = r.files_to_source || [ ]
   service_action = r.service_action || [ :enable, :start ]
 
   template_cookbook = r.template_cookbook || 'anaconda'
-  run_template_name = r.run_template_name || 'ipython-notebook'
+  run_template_name = r.run_template_name || 'jupyter-notebook'
   run_template_opts = r.run_template_opts || {
     :owner => owner,
     :cmd_jupyter => cmd_jupyter(),
@@ -59,7 +65,7 @@ action :create do
     :files_to_source => files_to_source,
   }
 
-  runit_service "ipython-notebook-#{r.name}" do
+  runit_service "jupyter-notebook-#{r.name}" do
     options(run_template_opts)
     default_logger true
     run_template_name run_template_name
