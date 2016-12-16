@@ -2,7 +2,7 @@ def whyrun_supported?
   true
 end
 
-def cmd_ipython
+def cmd_jupyter
   "#{node.anaconda.install_root}/#{node.anaconda.version}/bin/ipython"
 end
 
@@ -49,7 +49,7 @@ action :create do
   run_template_name = r.run_template_name || 'ipython-notebook'
   run_template_opts = r.run_template_opts || {
     :owner => owner,
-    :cmd_ipython => cmd_ipython(),
+    :cmd_jupyter => cmd_jupyter(),
     :notebook_dir => install_dir,
     :ipython_dir => ipython_dir,
     :ip => ip,
