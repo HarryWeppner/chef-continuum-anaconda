@@ -3,12 +3,12 @@ def whyrun_supported?
 end
 
 def cmd_jupyter
-  conda_path = File.join(node.anaconda.install_root, node.anaconda.version)
+  conda_path = ::File.join(node.anaconda.install_root, node.anaconda.version)
   if node.anaconda.env
-    conda_path = File.join(conda_path, 'envs', node.anaconda.env)
+    conda_path = ::File.join(conda_path, 'envs', node.anaconda.env)
   end
 
-  conda_path = File.join(conda_path, 'bin', 'jupyter')
+  conda_path = ::File.join(conda_path, 'bin', 'jupyter')
   return conda_path
 end
 
