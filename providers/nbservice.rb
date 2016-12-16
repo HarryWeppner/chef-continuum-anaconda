@@ -48,7 +48,7 @@ action :create do
 
   pythonpath = r.pythonpath || nil
   pythonstartup = r.pythonstartup || nil
-  files_to_source = r.files_to_source || [ ]
+  files_to_source = r.files_to_source || node.anaconda.notebook.files_to_source
   service_action = r.service_action || [ :enable, :start ]
 
   template_cookbook = r.template_cookbook || 'anaconda'
