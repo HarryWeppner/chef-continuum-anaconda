@@ -65,7 +65,7 @@ action :create do
     :files_to_source => files_to_source,
   }
 
-  runit_service "jupyter-notebook-#{r.name}" do
+  runit_service "jupyter-#{r.name}" do
     options(run_template_opts)
     default_logger true
     run_template_name run_template_name
